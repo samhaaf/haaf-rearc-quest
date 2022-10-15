@@ -4,9 +4,9 @@ This repo solves the Rearc Data Quest: https://github.com/rearc-data/quest
 
 You can find the mirror in this S3 bucket: "haaf-rearc-quest"
 
-If you want to build this, get yourself an Amazon Linux 2 environment (numpy -> lambda is easier). I use Cloud9.
+This is developed to be built from an Amazon Linux 2 environment. I use Cloud9.
 
-To install deps and requirements:
+To install the deps and requirements:
 
 ```
 git clone https://github.com/samhaaf/haaf-rearc-quest.git
@@ -15,6 +15,7 @@ make install
 ```
 
 If this doesn't work right away, you may need to install python3.9 and set an alias:
+
 ```
 sudo yum -y groupinstall "Development Tools"
 sudo yum -y install openssl-devel bzip2-devel libffi-devel
@@ -28,7 +29,7 @@ echo "alias python=python3.9" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-To test individual modules locally:
+Then, to test individual modules locally:
 
 ```
 make test-csvs
@@ -37,16 +38,18 @@ make test-scrape
 make test-report
 ```
 
-To deploy the whole thing to aws:
+And to deploy the whole thing to aws:
 
 ```
 make apply
 ```
 
-If you get an error here regarding an IAM role, you might need (disable managed credentials)[https://github.com/aws-samples/aws-workshop-for-kubernetes/issues/391] and then write new ones to ~/.aws/credentials.
+If you get an error here regarding an IAM role, you might need to (disable managed credentials)[https://github.com/aws-samples/aws-workshop-for-kubernetes/issues/391] and then write new ones to ~/.aws/credentials.
 
-To tear it all down:
+Finally, to tear it all back down:
 
 ```
 make clean
 ```
+
+EOF
