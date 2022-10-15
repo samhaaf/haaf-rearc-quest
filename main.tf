@@ -104,7 +104,7 @@ resource "aws_sqs_queue" "haaf_rearc_quest_queue" {
 }
 
 
-resource "aws_s3_bucket_object" "file_upload" {
+resource "aws_s3_object" "lambda_zip" {
   bucket = aws_lambda_function.haaf_rearc_quest_scrape_fn.environment[0].variables.S3_BUCKET
   key    = "lambda-functions/haaf_rearc_quest_report_fn.zip"
   source = "report_lambda/_lambda_payload.zip"
@@ -112,8 +112,8 @@ resource "aws_s3_bucket_object" "file_upload" {
 
 
 resource "aws_lambda_function" "haaf_rearc_quest_report_fn" {
-  s3_bucket   = aws_s3_bucket_object.file_upload.bucket
-  s3_key      = aws_s3_bucket_object.file_upload.key
+  s3_bucket   = aws_s3_object.lambda_zip.bucket
+  s3_key      = aws_s3_object.lambda_zip.key
 
   function_name = "haaf_rearc_quest_report_fn"
   role          = aws_iam_role.haaf_rearc_quest_role.arn
