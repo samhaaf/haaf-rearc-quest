@@ -3,6 +3,7 @@ from hit_api import hit_api
 from pprint import pprint
 from promise import Promise
 import boto3
+import json
 
 
 def lambda_handler(event, context):
