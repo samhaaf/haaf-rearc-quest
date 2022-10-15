@@ -43,7 +43,9 @@ To deploy the whole thing to aws:
 make apply
 ```
 
-and to tear it down:
+If you get an error here regarding an IAM role, it's because the creds on your server are using a token, which can't be used to update IAM. Just change your acces keys in ~/.aws/credentials.
+
+To tear it all down:
 
 ```
 make clean
