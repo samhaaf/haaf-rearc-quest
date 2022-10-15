@@ -37,18 +37,46 @@ def lambda_handler(event, context):
 
     ### Part 3.2 - Best year for each series_id
     print('Best year for each series_id:')
+    # This query isn't working on every platform -- some software thing I can't resolve
+#    print(sqldf("""
+#        SELECT series_id, year, total_value as value 
+#        FROM (
+#            SELECT series_id, year, total_value 
+#                , ROW_NUMBER() OVER (PARTITION BY _."series_id" ORDER BY _."total_value" DESC) rn
+#            FROM (
+#                SELECT series_id, year, SUM(value) as total_value
+#                FROM csv_df
+#                GROUP BY series_id, year
+#            ) _
+#        ) __
+#        WHERE rn = 1
+#        ORDER BY series_id ASC
+#    """).to_string())
+
+    # So here's an inefficient version without a PARTITION BY clause
     print(sqldf("""
-        SELECT series_id, year 
+        select series_id, year
+        from (
+            SELECT l.series_id, r.year --, r.total_value as value
             FROM (
-                SELECT series_id, year, ROW_NUMBER() OVER (PARTITION BY series_id ORDER BY total_value DESC) rn
+                SELECT series_id, max(total_value) as max_value
                 FROM (
                     SELECT series_id, year, SUM(value) as total_value
                     FROM csv_df
                     GROUP BY series_id, year
-            )
-        )
-        WHERE rn = 1
-        ORDER BY series_id ASC
+                )
+                GROUP BY series_id
+            ) l 
+            LEFT JOIN (
+                SELECT series_id, year, SUM(value) as total_value
+                FROM csv_df
+                GROUP BY series_id, year
+            ) r
+            ON l.series_id = r.series_id AND l.max_value = r.total_value
+            order by r.year desc
+        ) 
+        group by series_id
+        order by series_id asc
     """).to_string())
 
     ### Part 3.3 - Value for given year

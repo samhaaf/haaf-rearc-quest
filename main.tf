@@ -105,7 +105,7 @@ resource "aws_sqs_queue" "haaf_rearc_quest_queue" {
 
 
 resource "aws_s3_object" "lambda_zip" {
-  bucket = trim(ws_lambda_function.haaf_rearc_quest_scrape_fn.environment[0].variables.S3_BUCKET, "\"")
+  bucket = trim(aws_lambda_function.haaf_rearc_quest_scrape_fn.environment[0].variables.S3_BUCKET, "\"")
   key    = "lambda-functions/haaf_rearc_quest_report_fn.zip"
   source = "report_lambda/_lambda_payload.zip"
   etag = filemd5("report_lambda/_lambda_payload.zip")

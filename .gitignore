@@ -4,6 +4,7 @@
 *.tfstate*
 **/poetry.lock
 **/*.swp
+**/__pycache__
 .terraform/*
 .terraform.lock.hcl
 
