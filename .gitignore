@@ -1,0 +1,9 @@
+**/_lambda_payload.zip
+**/_build/
+**/_assets/
+*.tfstate*
+**/poetry.lock
+**/*.swp
+.terraform/*
+.terraform.lock.hcl
+
