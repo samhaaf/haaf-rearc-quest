@@ -43,7 +43,7 @@ To deploy the whole thing to aws:
 make apply
 ```
 
-If you get an error here regarding an IAM role, you might need to add MFA to your root account.
+If you get an error here regarding an IAM role, you might need (disable managed credentials)[https://github.com/aws-samples/aws-workshop-for-kubernetes/issues/391] and then write new ones to ~/.aws/credentials.
 
 To tear it all down:
 
