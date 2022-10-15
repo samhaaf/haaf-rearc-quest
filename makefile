@@ -33,6 +33,7 @@ build: freeze
 	#       	cp -r ../_assets/numpy . && cp -r ../_assets/pandas .
 	#-cd report_lambda && poetry run pip install --platform manylinux2014_x86_64 --target=_build --implementation cp --python 3.9 --only-binary=:all: --upgrade numpy 
 	#rm -r report_lambda/_build/*.dist-info
+	rm -rf report_lambda/_build/*.dist-info
 	cd report_lambda/_build && zip -r ../_lambda_payload.zip * 
 	cd report_lambda/src && zip -ur ../_lambda_payload.zip *	
 
