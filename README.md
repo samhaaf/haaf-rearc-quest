@@ -2,6 +2,8 @@
 
 This repo solves the Rearc Data Quest: https://github.com/rearc-data/quest
 
+You can find the mirror in this S3 bucket: "haaf-rearc-quest"
+
 You're going to want to do this in an Amazon Linux 2 environment (numpy -> lambda is easier). I use Cloud9.
 
 To install deps and requirements:
