@@ -3,6 +3,7 @@ SHELL := /bin/bash
 
 install:
 	curl -sSL https://install.python-poetry.org | python3 -
+	terraform init
 	cd scrape_lambda && poetry install --no-root
 	cd report_lambda && poetry install --no-root
 
