@@ -29,7 +29,7 @@ build: freeze
 	#curl https://files.pythonhosted.org/packages/91/e2/61f674f92e4a13a9c4b24260d2ca8c964e4affccfa3cb9fc2284996618a3/pandas-1.5.0-cp311-cp311-win_amd64.whl -sSL -C - -o report_lambda/_assets/pandas.whl
 	#cd report_lambda/_assets && unzip -n numpy.whl && unzip -n pandas.whl && rm -r *.dist-info
 	#cd report_lambda/_build && rm -rf numpy pandas && \
-	       	cp -r ../_assets/numpy . && cp -r ../_assets/pandas .
+	#       	cp -r ../_assets/numpy . && cp -r ../_assets/pandas .
 	#-cd report_lambda && poetry run pip install --platform manylinux2014_x86_64 --target=_build --implementation cp --python 3.9 --only-binary=:all: --upgrade numpy 
 	#rm -r report_lambda/_build/*.dist-info
 	cd report_lambda/_build && zip -r ../_lambda_payload.zip * 
