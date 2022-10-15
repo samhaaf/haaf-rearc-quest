@@ -124,6 +124,7 @@ resource "aws_lambda_function" "haaf_rearc_quest_report_fn" {
 
   runtime = "python3.9"
   timeout = 60
+  memory_size = 512
 
   environment {
     variables = {
