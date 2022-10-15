@@ -43,7 +43,7 @@ To deploy the whole thing to aws:
 make apply
 ```
 
-If you get an error here regarding an IAM role, it's because the creds on your server are using a token, which can't be used to update IAM. Just change your acces keys in ~/.aws/credentials.
+If you get an error here regarding an IAM role, you might need to add MFA to your root account.
 
 To tear it all down:
 
